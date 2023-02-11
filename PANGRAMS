@@ -1,0 +1,29 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+public class Pangrams {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String line = scan.nextLine().toLowerCase();
+        boolean found = true;
+        for (int i = 97; i <= 122; i++) {
+            char ch = (char) i;
+            if (line.indexOf(ch) == -1) {
+                found = false;
+                break;
+            }
+        }
+        System.out.println(found ? "pangram" : "not pangram");
+        scan.close();
+    }
+
+}
