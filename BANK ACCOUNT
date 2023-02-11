@@ -1,0 +1,67 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+class BankAccount{
+    private int accountNo;
+    private String name;
+    private int nooftran;
+    private int balance;
+    public BankAccount(int accountNo,String name,int nooftran){
+        this.accountNo=accountNo;
+        this.name=name;
+        this.nooftran=nooftran;
+    }
+    public int getAccountNo(){
+        return accountNo;
+    }
+    public String getName(){
+        return name;
+    }
+    public int getNooftran(){
+        return nooftran;
+    }
+    public int getBalance(){
+        return balance;
+    }
+
+    public void getDeposit(int ammount){
+        balance=balance+ammount;
+    }
+    public void getWithdraw(int ammount){
+        if (balance>=ammount){
+            balance=balance-ammount;
+        }
+        else{
+            System.out.println("Negative Balance Transaction Cancelled");
+        }
+    }
+    public void Display(){
+        System.out.println(getAccountNo()+" "+getName()+" "+getBalance());
+    }
+}
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in =new Scanner(System.in);
+        int ac= Integer.parseInt(in.nextLine());
+        String n=in.nextLine();
+        int t=Integer.parseInt(in.nextLine());
+        BankAccount s= new BankAccount(ac,n,t);
+        for (int i=0;i<t;i++){
+            String [] nums = in.nextLine().split(" ");
+            if (nums[0].equals("Display")){
+                s.Display();
+            }
+            else if (nums[0].equals("Deposit")){
+                s.getDeposit(Integer.parseInt(nums[1]));
+            }
+            else{
+                s.getWithdraw(Integer.parseInt(nums[1]));
+            }
+            }
+    }
+}
