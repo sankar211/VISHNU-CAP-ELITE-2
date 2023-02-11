@@ -1,0 +1,42 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+public class TimeConversion {
+
+    public static String timeConversion(String s) {
+        String[] split = s.split(":");
+        String outputTime;
+        String hour = split[0];
+        String minutes = split[1];
+        String seconds = split[2].substring(0, 2);
+        if (s.endsWith("AM")) {
+            if (hour.equals("12")) {
+                hour = "00";
+            }
+        } else {
+            if (!hour.equals("12")) {
+                int h = Integer.parseInt(hour);
+                h += 12;
+                hour = String.valueOf(h);
+            }
+        }
+        outputTime = hour + ":" + minutes + ":" + seconds;
+        return outputTime;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String inputString = in.nextLine();
+        System.out.println(timeConversion(inputString));
+    }
+
+}
